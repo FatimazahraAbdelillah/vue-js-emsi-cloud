@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div>
+        Welcome to Search Page
+    </div>
 </template>
 
 <script>
