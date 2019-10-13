@@ -5,7 +5,7 @@
 
             <div class="col-md-6">
                 <h2 class="text-bold"><i class="fas fa-file-download mr-3"></i>Add a document </h2>
-                <form action="" @submit.prevent="addDocument()">
+                <form action="" @submit.prevent="addDocument()" ref="addDocument">
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-    import {required, email} from 'vuelidate/lib/validators'
+    import {required} from 'vuelidate/lib/validators'
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
 
@@ -169,6 +169,12 @@
         },
         methods: {
             addDocument() {
+                let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.addDocument,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                });
                 this.submitted = true;
                 this.$v.$touch();
                 if (this.$v.$invalid) {
@@ -181,10 +187,10 @@
                     title: this.document.title,
                     moduleId: this.document.moduleId,
                     file:this.document.files
-                }).then((response) => {
-                    console.log(response);
-                }).catch((error) => {
-                    console.log(error);
+                }).then(() => {
+                   loader.hide();
+                }).catch(() => {
+                   loader.hide();
                 });
             },
             fileAdded(file) {
@@ -201,8 +207,8 @@
                     year: this.url.year
                 }).then((response) => {
                     this.subjects = response.data;
-                }).catch((error) => {
-                    console.log(error);
+                }).catch(() => {
+                   
                 });
             },
             getShortFiliere(event) {
@@ -216,7 +222,7 @@
             vueDropzone: vue2Dropzone,
         },
         created() {
-            console.log(this.document.files.length);
+            
         }
     }
 </script>

@@ -111,7 +111,7 @@
                         </li>
                         <li class="list-group-item" style="border: none">
                             <div class="custom-control custom-radio">
-                                <input type="radio" name="filiere" v-model="RdoFiliere" @change="" alue="IFA"
+                                <input type="radio" name="filiere" v-model="RdoFiliere" value="IFA"
                                        class="custom-control-input" id="IFA">
                                 <label class="custom-control-label font-weight-bolder" style="font-size: 14px;"
                                        for="IFA">Ingénierie financière et audit</label>
@@ -186,7 +186,7 @@
                     .then(response => {
                         loader.hide();
                         this.errorExist = false;
-                        console.log(response);
+                      
                         this.courses = response.data.message;
                     })
                     .catch(error => {

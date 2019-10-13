@@ -55,7 +55,6 @@
 
 <script>
     import {required, email} from 'vuelidate/lib/validators'
-    import axios from 'axios'
 
     export default {
         name: "login",
@@ -72,7 +71,7 @@
                 this.$store.dispatch('retrieveToken', {
                     email: this.user.email,
                     password: this.user.password
-                }).then(response => {
+                }).then(() => {
                     this.loading = false;
                     this.$router.push({name: 'home'});
                 }).catch(error => {

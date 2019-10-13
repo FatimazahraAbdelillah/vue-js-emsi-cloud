@@ -108,7 +108,6 @@
 </template>
 
 <script>
-    import axios from "axios";
     import card from "../components/card";
 
     export default {
@@ -145,9 +144,6 @@
                     .then(({data}) => {
                         loader.hide();
                         this.lastAddedDocuments = data;
-                    })
-                    .catch(error => {
-
                     });
             }
         },

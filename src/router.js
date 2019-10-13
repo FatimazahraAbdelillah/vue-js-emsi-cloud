@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import login from "./views/auth/login";
 import register from "./views/auth/register";
-import search from "./views/search";
 import documents from "./views/documents/documents";
 import add_documents from "./views/documents/add_documents";
 
