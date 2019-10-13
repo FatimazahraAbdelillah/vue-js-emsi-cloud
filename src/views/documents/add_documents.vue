@@ -178,6 +178,7 @@
                 this.submitted = true;
                 this.$v.$touch();
                 if (this.$v.$invalid) {
+                    loader.hide();
                     if (this.document.files.length <= 0) {
                         this.fileError = true;
                     }
