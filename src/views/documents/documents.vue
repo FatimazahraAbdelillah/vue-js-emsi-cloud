@@ -16,53 +16,116 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <div class="card shadow-sm border-0 p-2">
-                    <ul class="nav nav-pills nav-fill">
-                        <li class="nav-item">
-                            <a class="nav-link nav-search-links" @click="getAllDocument()"
-                               href="#">All</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-search-links" @click="filterDocumentByFiliere('IIR')" href="#">IIR</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-search-links"  @click="filterDocumentByFiliere('GI')"  href="#">GI</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-search-links"  @click="filterDocumentByFiliere('IAII')" href="#">IAII</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-search-links" @click="filterDocumentByFiliere('IFA')"  href="#">IFA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-search-links"  @click="filterDocumentByFiliere('GC')" href="#">GC</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row pt-3">
+            <div class="row ">
                 <div class="col-md-3">
-                    <ul class="list-group border-0 card shadow-sm  p-2">
+                    <ul class="list-group border-0 mb-3 card shadow-sm  p-2">
                         <li class="list-group-item" style="border: none">
-                            <h6 class="text-center m-0">Search Filter</h6>
+                            <h6 class="m-0"><i class="fas fa-filter mr-2"></i>Filter</h6>
                         </li>
-                        <li class="list-group-item active" style="border: none">
+                        <li class="list-group-item" style="border: none">
                             <a href="#" class="filter-link"><i class="fas fa-calendar mr-2"></i>By Date</a>
                         </li>
-                        <li class="list-group-item" style="border: none">Morbi leo risus</li>
-                        <li class="list-group-item" style="border: none">Porta ac consectetur ac</li>
-                        <li class="list-group-item" style="border: none">Vestibulum at eros</li>
-
                     </ul>
+                    <ul class="list-group border-0 mb-3 card shadow-sm  p-2">
+                        <li class="list-group-item" style="border: none">
+                            <h6 class="m-0 d-inline float-left"><i class="fas fa-calendar-check mr-2"></i>Semestre</h6>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="semestre" @change="GetCourseBySemestre" value="1er Semestre"
+                                       v-model="RdoSemestre" class="custom-control-input" id="1semestre">
+                                <label class="custom-control-label" for="1semestre">1er Semestre</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="semestre" @change="GetCourseBySemestre" value="2eme Semestre"
+                                       v-model="RdoSemestre" class="custom-control-input" id="2semetre">
+                                <label class="custom-control-label" for="2semetre">2eme Semestre</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- End Semestre -->
+                    <ul class="list-group border-0 mb-3 card shadow-sm  p-2">
+                        <li class="list-group-item" style="border: none">
+                            <h6 class="m-0 float-left"><i class="fas fa-calendar-alt mr-2"></i>Année Universitaire</h6>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="year" v-model="RdoYear" @change="GetCourseByYear"
+                                       value="3eme Annee" class="custom-control-input" id="3year">
+                                <label class="custom-control-label" for="3year">3eme Annees</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="year" v-model="RdoYear" @change="GetCourseByYear"
+                                       value="4eme Annee" class="custom-control-input" id="4year">
+                                <label class="custom-control-label" for="4year">4eme Annees</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="year" v-model="RdoYear" @change="GetCourseByYear"
+                                       value="5eme Annee" class="custom-control-input" id="5year">
+                                <label class="custom-control-label" for="5year">5eme Annees</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--End Year-->
+                    <ul class="list-group border-0 mb-3 card shadow-sm  p-2">
+                        <li class="list-group-item" style="border: none">
+                            <h6 class="m-0 float-left"><i class="fas fa-briefcase mr-2"></i>Filiere</h6>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="filiere" v-model="RdoFiliere" @change="GetCourseByFiliere"
+                                       value="IIR" class="custom-control-input" id="iir">
+                                <label class="custom-control-label font-weight-bolder" style="font-size: 14px;"
+                                       for="iir">Ingénierie informatique et Réseaux</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="filiere" v-model="RdoFiliere" @change="GetCourseByFiliere"
+                                       value="GC" class="custom-control-input" id="GC">
+                                <label class="custom-control-label font-weight-bolder" style="font-size: 14px;"
+                                       for="GC">Genie Civil</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="filiere" v-model="RdoFiliere" @change="GetCourseByFiliere"
+                                       value="IAII" class="custom-control-input" id="IAII">
+                                <label class="custom-control-label font-weight-bolder" style="font-size: 14px"
+                                       for="IAII">Ingénierie des automatismes et informatique industrielle</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="filiere" v-model="RdoFiliere" @change="GetCourseByFiliere"
+                                       value="GI" class="custom-control-input" id="GI">
+                                <label class="custom-control-label font-weight-bolder" style="font-size: 14px;"
+                                       for="GI">Génie Industriel</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="filiere" v-model="RdoFiliere" @change="" alue="IFA"
+                                       class="custom-control-input" id="IFA">
+                                <label class="custom-control-label font-weight-bolder" style="font-size: 14px;"
+                                       for="IFA">Ingénierie financière et audit</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--End Filiere-->
                 </div>
                 <div class="col-md-9 vld-parent" ref="searchCard">
-                    <div v-if="errorExist" class="alert shadow-sm alert-danger">
-                        <i class="fas fa-exclamation-circle mr-2"></i><span
-                            class="text-label text-white"> {{error}}</span>
+                    <div v-if="filter" class="alert shadow-sm alert-danger d-flex justify-content-between">
+                        <p class="m-0">Clear Filtering</p>
+                        <p class="m-0" @click="clearFilter()"><i class="fas fa-times  pointer"></i></p>
                     </div>
                     <div class="row">
-
                         <div v-for="course in courses" :key="course.id" class="col-md-4">
                             <card :title="course.title" :id="course.id" :downloadLink="course.downloadLink"
                                   :year="course.year" :userFullName="course.fullName"
@@ -89,7 +152,12 @@
                 error: '',
                 errorExist: false,
                 courses: {},
-                fullPage: false
+                fullPage: false,
+                RdoSemestre: '',
+                filteredCourse: {},
+                RdoYear: '',
+                filter: false,
+                RdoFiliere: '',
             }
         },
         props: [
@@ -105,25 +173,6 @@
             card,
         },
         methods: {
-            filterDocumentByFiliere(filiere) {
-                let loader = this.$loading.show({
-                    // Optional parameters
-                    container: this.fullPage ? null : this.$refs.searchCard,
-                    canCancel: false,
-                    onCancel: this.onCancel,
-                });
-                const result = this.courses.filter(course => course.filiereShort === filiere);
-                if (result.length <= 0){
-                    loader.hide();
-                    this.errorExist = true;
-                    this.error="No Document Found for " + filiere;
-                    return 0;
-                }
-                loader.hide();
-                this.errorExist = false;
-                return  this.courses = result;
-
-            },
             getCourse() {
                 let loader = this.$loading.show({
                     // Optional parameters
@@ -168,6 +217,25 @@
                         this.error = error.data.message;
                         this.courses = {}
                     });
+            },
+            GetCourseBySemestre() {
+                this.filter = true;
+                this.courses = this.courses.filter(course => course.semestre === this.RdoSemestre);
+            },
+            GetCourseByYear() {
+                this.filter = true;
+                this.courses = this.courses.filter(course => course.year === this.RdoYear);
+            },
+            GetCourseByFiliere() {
+                this.filter = true;
+                this.courses = this.courses.filter(course => course.filiereShort === this.RdoFiliere);
+            },
+            clearFilter() {
+               this.filter = false;
+               this.getAllDocument();
+               this.RdoFiliere = false;
+               this.RdoYear = false;
+               this.RdoSemestre = false;
             }
         },
         created() {

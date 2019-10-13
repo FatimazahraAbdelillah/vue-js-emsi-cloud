@@ -130,12 +130,16 @@
 
     .filter-link {
         color: #102a43;
-        font-weight: bold;
+        font-weight: bolder;
         text-decoration: none !important;
 
         &:hover {
             color: #303f9f;
         }
+    }
+    .pointer{
+        cursor: pointer;
+        user-select: none;
     }
 
     .nav-item .active {
@@ -150,7 +154,10 @@
             color: white !important;
         }
     }
-
+    .text-danger{
+        color:#e53935 !important;
+        font-weight: 500;
+    }
     .server-error {
         margin-bottom: 12px;
         font-size: 16px;
