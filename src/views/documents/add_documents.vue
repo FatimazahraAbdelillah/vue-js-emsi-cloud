@@ -170,7 +170,6 @@
         methods: {
             addDocument() {
                 let loader = this.$loading.show({
-                    // Optional parameters
                     container: this.fullPage ? null : this.$refs.addDocument,
                     canCancel: false,
                     onCancel: this.onCancel,
